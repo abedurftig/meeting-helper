@@ -1,2 +1,2 @@
 rootProject.name = "meeting-helper"
-include("app")
+include("server")
