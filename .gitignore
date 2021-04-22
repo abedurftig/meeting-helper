@@ -6,3 +6,4 @@
 build
 # Ignore the web dist folder
 web/meeting-helper/dist
+server/src/main/resources/public
