@@ -2,6 +2,7 @@
 .gradle
 # Ignore IntelliJ specific files
 .idea
-
 # Ignore Gradle build output directory
 build
+# Ignore the web dist folder
+web/meeting-helper/dist

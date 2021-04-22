@@ -1,0 +1,19 @@
+{
+  "name": "meeting-helper",
+  "application": {
+    "head": "assets/head.html",
+    "title": "meeting-helper",
+    "icon": "assets/favicon.png"
+  },
+  "external": {
+    "stylesheets": [
+      "assets/style.css"
+    ]
+  },
+  "source-directories": [
+    "source"
+  ],
+  "test-directories": [
+    "tests"
+  ]
+}
