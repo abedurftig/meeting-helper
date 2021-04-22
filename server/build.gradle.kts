@@ -37,7 +37,7 @@ dependencies {
 
 
 application {
-    mainClass.set("meeting.helper.ApplicationKt")
+    mainClass.set("meeting.helper.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
