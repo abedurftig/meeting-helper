@@ -3,3 +3,10 @@ micronaut:
     static-resources:
       default:
         paths: classpath:public
+  server:
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowedOrigins:
+            - http://localhost:3000

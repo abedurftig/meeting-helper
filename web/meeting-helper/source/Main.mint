@@ -1,4 +1,48 @@
+routes {
+  * {
+    MainStore.load()
+  }
+}
+
+record Data {
+  message : String
+}
+
+enum Status {
+  Initial
+  Loading
+  Error(String)
+  Ok(Data)
+}
+
+store MainStore {
+  state status : Status = Status::Initial
+
+  fun load : Promise(Never, Void) {
+    sequence {
+      next { status = Status::Loading }
+
+      response =
+        @API_ENDPOINT + "hello"
+        |> Http.get()
+        |> Http.send()
+
+      object =
+        response.body
+
+      result =
+        Data(object)
+
+      next { status = Status::Ok(result) }
+    } catch Http.ErrorResponse => error {
+      next { status = Status::Error("Something went wrong with the request.") }
+    }
+  }
+}
+
 component Main {
+  connect MainStore exposing { status }
+
   style app {
     justify-content: center;
     flex-direction: column;
@@ -15,13 +59,22 @@ component Main {
 
   fun render : Html {
     <div::app>
-      <Logo/>
+      case (status) {
+        Status::Initial => <div/>
+        Status::Loading => <div>"Loading..."</div>
 
-      <Info mainPath="source/Main.mint"/>
+        Status::Error message =>
+          <div>
+            <{ message }>
+          </div>
 
-      <Link href="https://www.mint-lang.com/">
-        "Learn Mint"
-      </Link>
+        Status::Ok data =>
+          <Content value={data.message}/>
+      }
     </div>
+  }
+
+  fun componentDidMount : Promise(Never, Void) {
+    next {  }
   }
 }

@@ -1,5 +1,5 @@
-component Info {
-  property mainPath : String
+component Content {
+  property value : String
 
   style info {
     font-size: calc(10px + 2vmin);
@@ -15,13 +15,9 @@ component Info {
 
   fun render : Html {
     <p::info>
-      <{ "Edit " }>
-
       <code::path>
-        <{ mainPath }>
+        <{ value }>
       </code>
-
-      <{ " and save to reload." }>
     </p>
   }
 }
